@@ -2,6 +2,7 @@ import random
 
 matrix = [[random.randint(1, 10) for j in range(5)] for i in range(5)]
 
+# time complex. O(n), where n is the length of the list.
 def consecutiveNumbers(list):
   i = 0
   while (i < len(list) - 1) and list[i] + 1 == list[i + 1]:
@@ -9,8 +10,10 @@ def consecutiveNumbers(list):
   return i == len(list) - 1
 
 # change n to any other number if you want to find more or less consecutive numbers
+# keep in mind that the matrix is 5x5
 n = 4
 
+# time complex. O(n²), where n is the total elements of the matrix.
 def findSequenceByRow(matrix):
   seq = []
   for r, row in enumerate(matrix):
@@ -19,6 +22,7 @@ def findSequenceByRow(matrix):
         seq.append([[r,c],[r,c+n-1]])
   return seq
 
+# time complex. O(n²), where n is the total elements of the matrix.
 def findSequenceByColumn(matrix):
   c = 0
   seq = []
@@ -30,10 +34,9 @@ def findSequenceByColumn(matrix):
     c += 1
   return seq
 
+
 seqByRow = findSequenceByRow(matrix)
-print(seqByRow)
 seqByColumn = findSequenceByColumn(matrix)
-print(seqByColumn)
 
 print(f'Sequences of {n} consecutive numbers found iterating over rows')
 for seq in seqByRow:

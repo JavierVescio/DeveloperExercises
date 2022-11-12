@@ -1,14 +1,29 @@
-"""Hacer una función que genere una lista de diccionarios que contengan id y edad, donde
-edad sea un número aleatorio entre 1 y 100 y la longitud de la lista sea de 10
-elementos. retornar la lista.
-Hacer otra función que reciba lo generado en la primer función y ordenarlo de mayor a
-menor. Printear el id de la persona más joven y más vieja. Devolver la lista ordenada."""
-
 import random
 
-
+# time complexity O(n)
 def generateHashMaps():
     return [{'id': i, 'age': random.randint(1, 100)} for i in range(10)]
 
 
-print(generateHashMaps())
+# avg time complexity O(n²)
+def orderByAge(list):
+    # bubble sort algorithm used to sort.
+    x = 0
+    while x < len(list):
+        y = 0
+        while y < len(list) - 1:
+            if list[y]['age'] < list[y+1]['age']:
+                aux = list[y]
+                list[y] = list[y+1]
+                list[y+1] = aux
+            y += 1
+        x += 1
+
+    youngestPersonId = list[-1]['id']
+    oldestPersonId = list[0]['id']
+    print(
+        f'Youngest person id: {youngestPersonId}. Oldest person id: {oldestPersonId}')
+    return list
+
+
+orderedAges = orderByAge(generateHashMaps())

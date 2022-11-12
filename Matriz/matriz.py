@@ -4,8 +4,8 @@ final."""
 
 import random
 
-#matrix = [[random.randint(1, 10) for j in range(5)] for i in range(5)]
-matrix = [[2,3,7,8,9],[2,3,7,9,9],[2,2,3,4,5]]
+matrix = [[random.randint(1, 10) for j in range(5)] for i in range(5)]
+#matrix = [[3,3,7,8,9],[3,3,7,9,9],[4,2,3,10,5],[5,5,3,11,5],[6,5,3,5,5]]
 
 def consecutiveNumbers(list):
   i = 0
@@ -13,19 +13,21 @@ def consecutiveNumbers(list):
     i += 1
   return i == len(list) - 1
 
-#traverse by row
-# for idx, row in enumerate(matrix):
-#   for c in range(2):
-#     list = row[c:c+4]
-#     if consecutiveNumbers(list):
-#       print(f'Initial: ({idx},{c}). Final: ({idx},{c+3})')
 
 # change n to any other number if you want to find more or less consecutive numbers
 n = 4
-for idx, row in enumerate(matrix):
-  for c in range(len(row) - n + 1):
-    list = row[c:c+n]
-    if consecutiveNumbers(list):
-      print(f'Initial: ({idx},{c}). Final: ({idx},{c+n-1})')
 
-#list = [[2,3,7,8,9],[1,2,3,4,5],[2,3,7,9,9]]
+print('Iterating over rows')
+for r, row in enumerate(matrix):
+  for c in range(len(row) - n + 1):
+    if consecutiveNumbers(row[c:c+n]):
+      print(f'Initial: ({r},{c}). Final: ({r},{c+n-1})')
+
+print('Iterating over columns')
+c = 0
+while c < len(matrix):
+  for r in range(len(matrix) - n + 1):
+    list = [matrix[r+i][c] for i in range(n)]
+    if consecutiveNumbers(list):
+      print(f'Initial: ({r},{c}). Final: ({r+n-1},{c})')
+  c += 1

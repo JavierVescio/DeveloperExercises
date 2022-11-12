@@ -1,11 +1,9 @@
 import random
 
-# time complexity O(n)
 def generateHashMaps():
     return [{'id': i, 'age': random.randint(1, 100)} for i in range(10)]
 
-
-# avg time complexity O(n²)
+# avg time complexity of buble sort O(n²), where n is the length of the list.
 def orderByAge(list):
     # bubble sort algorithm used to sort.
     x = 0
@@ -19,11 +17,11 @@ def orderByAge(list):
             y += 1
         x += 1
 
-    youngestPersonId = list[-1]['id']
-    oldestPersonId = list[0]['id']
-    print(
-        f'Youngest person id: {youngestPersonId}. Oldest person id: {oldestPersonId}')
     return list
 
-
 orderedAges = orderByAge(generateHashMaps())
+
+youngestPersonId = orderedAges[-1]['id']
+oldestPersonId = orderedAges[0]['id']
+
+print(f'Youngest person id: {youngestPersonId}. Oldest person id: {oldestPersonId}')

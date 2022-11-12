@@ -6,4 +6,12 @@ import random
 
 matrix = [[random.randint(1, 10) for j in range(5)] for i in range(5)]
 
-print(matrix)
+def consecutiveNumbers(list):
+  i = 0
+  while (i < len(list) - 1) and list[i] + 1 == list[i + 1]:
+    i += 1
+  return i == len(list) - 1
+
+list = [1,2,3,4]
+
+print(consecutiveNumbers(list))
